@@ -22,6 +22,8 @@ jobs:
        - run:
            name: Updating package list
            command: sudo apt-get update
+       - run: curl -i https://apt-mo.trafficmanager.net/repos/dotnet-release/pool/main/d/dotnet-sharedframework-microsoft.netcore.app-1.0.5/dotnet-sharedframework-ubuntu-x64.1.0.5.deb
+       - run: dpkg -i dotnet-sharedframework-ubuntu-x64.1.0.5.deb
        - run:
            name: Installing Dotnet deb
            command: sudo apt-get install dotnet-dev-1.0.4
