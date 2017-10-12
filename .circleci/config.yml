@@ -3,6 +3,8 @@ jobs:
    build:
      docker:
        - image: circleci/python:3.6.1
+       - image: microsoft/dotnet:latest
      steps:
        - checkout
-       - run: echo "hello world"
+       - run: ls -a
+       - run: dotnet help
