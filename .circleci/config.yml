@@ -24,7 +24,7 @@ jobs:
            command: sudo apt-get update
        - run:
            name: Installing Dotnet deb
-           command: sudo apt-get install dotnet-sdk-2.0.0
+           command: sudo apt-get install dotnet-dev-1.0.4
        - run:
            name: Restoring Dotnet
            command: dotnet restore
