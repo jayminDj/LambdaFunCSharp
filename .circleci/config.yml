@@ -2,23 +2,16 @@ version: 2
 jobs:
    build:
      docker:
-       - image: circleci/python:3.6.1
+       - image: microsoft/dotnet:1.0-sdk
      steps:
        - checkout
+       - run: sudo apt-get install python-pip -y
        - run: sudo pip install awscli
        - run: export PATH=~/.local/bin:$PATH
        - run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
        - run: aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
        - run: aws configure set region us-east-1
        - run: aws configure set output json
-       - run: sudo apt-get install apt-transport-https
-
-       - run: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-       - run: sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-       - run: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
-       - run: sudo apt-get update
-       - run: sudo apt-get install dotnet-dev-1.0.4
        - run: dotnet --info
-       - run: ls /usr/share/dotnet/shared/Microsoft.NETCore.App
        - run: dotnet restore
        - run: dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution
