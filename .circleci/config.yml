@@ -28,3 +28,6 @@ jobs:
        - run:
            name: Restoring Dotnet
            command: dotnet restore
+       - run:
+           name: deploying lambda function
+           command: dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution
