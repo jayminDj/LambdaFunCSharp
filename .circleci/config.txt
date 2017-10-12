@@ -1,21 +1,33 @@
-- run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-- run: aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-- run: aws configure set region us-east-1
-- run: aws configure set output json
-- run: sudo apt-get install apt-transport-https
-- run:
-    name: Register the trusted Microsoft signature key
-    command: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-- run: sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-- run:
-    name: Register the Microsoft Product feed for your distro version
-    command: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
-- run:
-    name: Updating package list
-    command: sudo apt-get update
-- run:
-    name: Installing Dotnet deb
-    command: sudo apt-get install dotnet-sdk-2.0.0
-- run:
-    name: checking dotnet status
-    command: dotnet help
+version: 2
+jobs:
+   build:
+     docker:
+       - image: circleci/python:3.6.1
+     steps:
+       - checkout
+       - run: sudo pip install awscli
+       - run: export PATH=~/.local/bin:$PATH
+       - run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+       - run: aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+       - run: aws configure set region us-east-1
+       - run: aws configure set output json
+       - run: sudo apt-get install apt-transport-https
+       - run:
+           name: Register the trusted Microsoft signature key
+           command: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+       - run: sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+       - run:
+           name: Register the Microsoft Product feed for your distro version
+           command: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+       - run:
+           name: Updating package list
+           command: sudo apt-get update
+       - run:
+           name: Installing Dotnet deb
+           command: sudo apt-get install dotnet-dev-1.0.4
+       - run:
+           name: Restoring Dotnet
+           command: dotnet restore
+       - run:
+           name: deploying lambda function
+           command: dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution
