@@ -26,5 +26,5 @@ jobs:
            name: Installing Dotnet deb
            command: sudo apt-get install dotnet-sdk-2.0.0
        - run:
-           name: checking dotnet status
-           command: dotnet help
+           name: Restoring Dotnet
+           command: dotnet restore
