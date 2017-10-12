@@ -7,6 +7,9 @@ jobs:
        - checkout
        - run: ls -a
        - run:
+           name: test
+           command: uname -a
+       - run:
            name: Adding Dotnet deb package
            command: sudo sh -c 'echo "deb [arch=amd64] http://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
        - run:
@@ -15,9 +18,3 @@ jobs:
        - run:
            name: updating package list
            command: sudo apt-get update
-       - run:
-           name: Installing Dotnet core and cli
-           command: sudo apt-get install dotnet-sdk-2.0.0
-       - run:
-           name: test
-           command: uname -a
