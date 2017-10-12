@@ -5,6 +5,6 @@ jobs:
        - image: circleci/python:3.6.1
      steps:
        - checkout
-       - run: pip install awscli --upgrade --user
+       - run: pip install awscli
        - run: export PATH=~/.local/bin:$PATH
        - run: aws --version
