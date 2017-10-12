@@ -6,4 +6,4 @@ jobs:
      steps:
        - checkout
        - run: pip install awscli --upgrade --user
-       - run: locate aws
+       - run: ls ~/.local/bin -a
