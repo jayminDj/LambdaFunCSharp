@@ -7,4 +7,12 @@ jobs:
      steps:
        - checkout
        - run: ls -a
-       - run: dotnet help
+       - run:
+           name: Adding Dotnet deb package
+           command: sudo sh -c 'echo "deb [arch=amd64] http://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+       - run:
+           name: Adding key Dotnet package
+           command: sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
+       - run:
+           name: updating package list
+           command: sudo apt-get update
