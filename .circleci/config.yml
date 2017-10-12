@@ -5,8 +5,11 @@ jobs:
        - image: circleci/python:3.6.1
      steps:
        - checkout
-       - run: ls -a
-       - run: uname -a
+       - run: pip install awscli --upgrade --user
+       - run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+       - run: aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+       - run: aws configure set region us-east-1
+       - run: aws configure set output json
        - run: sudo apt-get install apt-transport-https
        - run:
            name: Register the trusted Microsoft signature key
