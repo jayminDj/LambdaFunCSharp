@@ -1,0 +1,16 @@
+version: 2
+jobs:
+   build:
+     docker:
+       image: microsoft/dotnet:latest
+     branches:
+      only:
+        - master
+     steps:
+       - checkout
+      run:
+        name: cheking dir
+        command: ls -a
+      run:
+        name: dotnet help
+        command: dotnet help
