@@ -6,5 +6,5 @@ jobs:
      steps:
        - checkout
        - run: pip install awscli --upgrade --user
-       - run: export PATH=$PATH:~/.local/bin/
+       - run: export PATH=~/.local/bin:$PATH
        - run: aws --version
