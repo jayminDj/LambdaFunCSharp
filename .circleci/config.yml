@@ -12,24 +12,13 @@ jobs:
        - run: aws configure set region us-east-1
        - run: aws configure set output json
        - run: sudo apt-get install apt-transport-https
-       - run:
-           name: Register the trusted Microsoft signature key
-           command: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+
+       - run: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
        - run: sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-       - run:
-           name: Register the Microsoft Product feed for your distro version
-           command: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
-       - run:
-           name: Updating package list
-           command: sudo apt-get update
-       - run: wget https://apt-mo.trafficmanager.net/repos/dotnet-release/pool/main/d/dotnet-sharedframework-microsoft.netcore.app-1.0.5/dotnet-sharedframework-ubuntu-x64.1.0.5.deb
-       - run: sudo dpkg -i dotnet-sharedframework-ubuntu-x64.1.0.5.deb
-       - run:
-           name: Installing Dotnet deb
-           command: sudo apt-get install dotnet-dev-1.0.4
-       - run:
-           name: Restoring Dotnet
-           command: dotnet restore
-       - run:
-           name: deploying lambda function
-           command: dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution
+       - run: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+       - run: sudo apt-get update
+       - run: sudo apt-get install dotnet-dev-1.0.4
+       - run: dotnet --info
+       - run: ls /usr/share/dotnet/shared/Microsoft.NETCore.App
+       - run: dotnet restore
+       - run: dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution
