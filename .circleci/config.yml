@@ -20,4 +20,4 @@ jobs:
            command: sudo apt-get install dotnet-sdk-2.0.0
        - run:
            name: test
-           command: dotnet help
+           command: uname -a
