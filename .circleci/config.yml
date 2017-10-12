@@ -6,6 +6,6 @@ jobs:
      steps:
        - checkout
        - run: pip install awscli --upgrade --user
+       - run: which python
        - run: ls -al /usr/local/bin/python ~/.local/lib/python3.6
        - run: sudo echo -n "export PATH=~/.local/bin:$PATH" > ~/.bashrc
-       - run: aws --version
