@@ -9,3 +9,4 @@ jobs:
        - run: which python
        - run: ls -al /usr/local/bin/python ~/.local/lib/python3.6
        - run: sudo echo -n "export PATH=~/.local/bin:$PATH" > ~/.bashrc
+       - run: ~/.local/bin/aws --version
