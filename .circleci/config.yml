@@ -1,12 +1,8 @@
 version: 2
 jobs:
-  build:
-    docker:
-      image: circleci/python:3.6.1
-    steps:
-      run:
-        name: cheking dir
-        command: ls -a
-    branches:
-      only:
-        - master
+   build:
+     docker:
+       - image: circleci/python:3.6.1
+     steps:
+       - checkout
+       - run: echo "hello world"
