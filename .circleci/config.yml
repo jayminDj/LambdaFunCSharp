@@ -7,6 +7,7 @@ jobs:
        - checkout
        - run: ls -a
        - run: uname -a
+       - run: sudo apt-get install apt-transport-https
        - run:
            name: Register the trusted Microsoft signature key
            command: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -17,7 +18,6 @@ jobs:
        - run:
            name: Updating package list
            command: sudo apt-get update
-       - run: sudo apt-get install apt-transport-https 
        - run:
            name: Installing Dotnet deb
            command: sudo apt-get install dotnet-sdk-2.0.0
