@@ -17,6 +17,7 @@ jobs:
        - run:
            name: Updating package list
            command: sudo apt-get update
+       - run: sudo apt-get install apt-transport-https 
        - run:
            name: Installing Dotnet deb
            command: sudo apt-get install dotnet-sdk-2.0.0
