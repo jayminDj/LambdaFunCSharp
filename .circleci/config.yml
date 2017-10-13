@@ -5,4 +5,4 @@ jobs:
        - image: microsoft/dotnet:1.0-sdk
      steps:
        - checkout
-       - run: ./run.sh
+       - run: sudo ./run.sh
