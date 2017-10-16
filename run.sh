@@ -12,5 +12,7 @@ then
   dotnet restore;
   dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution;
 else
-  dotnet build
+  echo 'start test';
+  dotnet restore;
+  dotnet build;
 fi
