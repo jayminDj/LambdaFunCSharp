@@ -12,5 +12,5 @@ then
   dotnet restore;
   dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution;
 else
-    echo "other branch";
+  dotnet build
 fi
