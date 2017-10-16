@@ -3,27 +3,6 @@ jobs:
    build:
      docker:
        - image: microsoft/dotnet:1.0-sdk
-     branches:
-       only:
-         - master
-         - dev
-         - staging
-     environment:
-       aws_deploy: true
-     steps:
-       - checkout
-       - run: chmod u+x run.sh
-       - run: ./run.sh
-   test:
-     docker:
-       - image: microsoft/dotnet:1.0-sdk
-     branches:
-       ignore:
-         - dev
-         - master
-         - staging
-     environment:
-       aws_deploy: false
      steps:
        - checkout
        - run: chmod u+x run.sh
