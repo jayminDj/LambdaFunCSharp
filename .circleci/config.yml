@@ -14,7 +14,7 @@ jobs:
        - checkout
        - run: chmod u+x run.sh
        - run: ./run.sh
-   build-dev:
+   test:
      docker:
        - image: microsoft/dotnet:1.0-sdk
      branches:
