@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $CIRCLE_BRANCH -eq "master" -o $CIRCLE_BRANCH -eq "dev" -o $CIRCLE_BRANCH -eq "staging"]
+if [ $CIRCLE_BRANCH -eq "master" -o $CIRCLE_BRANCH -eq "dev" -o $CIRCLE_BRANCH -eq "staging" ];
 then
   echo 'in dev';
   #apt-get update && apt-get install python-pip zip unzip -y;
