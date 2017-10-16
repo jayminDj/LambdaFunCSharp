@@ -1,7 +1,7 @@
 #!/bin/bash
 
 printenv;
-if [ "$CIRCLE_BRANCH" = "change" ] then
+if [ $CIRCLE_BRANCH = "change" ] then
     echo "change branch"
 else
     echo "other branch"
