@@ -1,10 +1,11 @@
 #!/bin/bash
 
 printenv;
-if [ $CIRCLE_BRANCH = "change" ] then
-    echo "change branch"
+if [ $CIRCLE_BRANCH = "change" ]
+then
+    echo "change branch";
 else
-    echo "other branch"
+    echo "other branch";
 fi
 #apt-get update && apt-get install python-pip zip unzip -y;
 #pip install awscli;
