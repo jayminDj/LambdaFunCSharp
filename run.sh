@@ -9,11 +9,24 @@ then
   aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY ;
   aws configure set region us-east-1;
   aws configure set output json
-  dotnet lambda deploy-function LambdaFunCSharp  --region us-east-1 -frole arn:aws:iam::275485857435:role/user-removal-service-lambda \
-  -fsub subnet-a88614e0,subnet-55db070f \
-  --function-security-groups sg-b9b543c8;
-  #dotnet build;
-  #dotnet lambda help deploy-function;
+  Lambda_func_config='-frole arn:aws:iam::275485857435:role/user-removal-service-lambda -fsub subnet-a88614e0,subnet-55db070f --function-security-groups sg-b9b543c8';
+  deploy_produnction
 else
   dotnet build;
 fi
+
+deploy_produnction(){
+  dotnet lambda deploy-function LambdaFunCSharpProd --region us-east-1 $*;
+}
+
+deploy_development(){
+  dotnet lambda deploy-function LambdaFunCSharpDev --region us-east-1 -frole arn:aws:iam::275485857435:role/user-removal-service-lambda \
+  -fsub subnet-a88614e0,subnet-55db070f \
+  --function-security-groups sg-b9b543c8;
+}
+
+deploy_stagging(){
+  dotnet lambda deploy-function LambdaFunCSharpStag --region us-east-1 -frole arn:aws:iam::275485857435:role/user-removal-service-lambda \
+  -fsub subnet-a88614e0,subnet-55db070f \
+  --function-security-groups sg-b9b543c8;
+}
