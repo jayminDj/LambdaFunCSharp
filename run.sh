@@ -11,7 +11,7 @@ then
   aws configure set output json
   #dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution;
   dotnet build;
-  dotnet lambda help;
+  dotnet lambda help deploy-function;
 else
   dotnet build;
 fi
