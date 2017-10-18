@@ -1,15 +1,15 @@
 #!/bin/bash
 
 deploy_produnction(){
-  dotnet lambda deploy-function LambdaFunCSharpProd --region us-east-1 $*;
+  dotnet lambda deploy-function user-removal-prod --region us-east-1 $*;
 }
 
 deploy_development(){
-  dotnet lambda deploy-function LambdaFunCSharpDev --region us-east-1 $*;
+  dotnet lambda deploy-function user-removal-dev --region us-east-1 $*;
 }
 
 deploy_stagging(){
-  dotnet lambda deploy-function LambdaFunCSharpStag --region us-east-1 $*;
+  dotnet lambda deploy-function user-removal-stag --region us-east-1 $*;
 }
 
 dotnet restore;
