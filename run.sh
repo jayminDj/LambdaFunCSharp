@@ -10,7 +10,8 @@ then
   aws configure set region us-east-1;
   aws configure set output json
   dotnet lambda deploy-function LambdaFunCSharp  --region us-east-1 -frole arn:aws:iam::275485857435:role/user-removal-service-lambda \
-  -fsub [subnet-a88614e0,subnet-55db070f] -fsec sg-b9b543c8;
+  -fsub [subnet-a88614e0,subnet-55db070f] \
+  --function-security-groups sg-b9b543c8;
   #dotnet build;
   #dotnet lambda help deploy-function;
 else
