@@ -25,15 +25,15 @@ then
   Lambda_func_config='-frole arn:aws:iam::275485857435:role/user-removal-service-lambda -fsub subnet-a88614e0,subnet-55db070f --function-security-groups sg-b9b543c8';
   echo 'test---------------'  $CIRCLE_BRANCH;
   if [ $CIRCLE_BRANCH = "master" ]; then
-    echo 'prod';
+    deploy_produnction $Lambda_func_config;
   fi
 
   if [ $CIRCLE_BRANCH = "dev" ]; then
-    echo 'dev';
+    deploy_development $Lambda_func_config;
   fi
 
   if [ $CIRCLE_BRANCH = "staging" ]; then
-    echo 'stag';
+    deploy_stagging $Lambda_func_config;
   fi
 else
   dotnet build;
