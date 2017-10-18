@@ -9,9 +9,9 @@ then
   aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY ;
   aws configure set region us-east-1;
   aws configure set output json
-  #dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution;
-  dotnet build;
-  dotnet lambda help deploy-function;
+  dotnet lambda deploy-function LambdaFunCSharp --function-role lambda_basic_execution  --function-publish;
+  #dotnet build;
+  #dotnet lambda help deploy-function;
 else
   dotnet build;
 fi
