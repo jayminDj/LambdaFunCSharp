@@ -26,7 +26,7 @@ then
   case "$CIRCLE_BRANCH" in
     "master") deploy_produnction $Lambda_func_config
     ;;
-    "dev") deploy_produnction $Lambda_func_config
+    "dev") deploy_development $Lambda_func_config
     ;;
     "staging") deploy_stagging $Lambda_func_config
     ;;
