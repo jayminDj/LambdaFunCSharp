@@ -23,18 +23,16 @@ then
   aws configure set region us-east-1;
   aws configure set output json
   Lambda_func_config='-frole arn:aws:iam::275485857435:role/user-removal-service-lambda -fsub subnet-a88614e0,subnet-55db070f --function-security-groups sg-b9b543c8';
-  if [$CIRCLE_BRANCH = "master"];
-  then
+  echo 'test---------------'  $CIRCLE_BRANCH;
+  if [$CIRCLE_BRANCH="master"];then
     deploy_produnction $Lambda_func_config;
   fi
 
-  if [$CIRCLE_BRANCH = "dev"];
-  then
+  if [$CIRCLE_BRANCH = "dev"];then
     deploy_development $Lambda_func_config;
   fi
 
-  if [$CIRCLE_BRANCH = "staging"];
-  then
+  if [$CIRCLE_BRANCH = "staging"];then
     deploy_stagging $Lambda_func_config;
   fi
 else
